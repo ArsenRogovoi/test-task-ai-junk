@@ -1,0 +1,21 @@
+.animation-window {
+  position: relative;
+  min-width: 600px;
+  min-height: 300px;
+  max-width: 600px;
+  max-height: 300px;
+  background-color: #f3c73781;
+}
+
+.add-entity-button {
+  min-height: 50px;
+  min-width: 50px;
+  max-height: 50px;
+  max-width: 50px;
+}
+
+.entity {
+  position: absolute;
+  width: 98px;
+  height: 98px;
+}
