@@ -1,9 +1,11 @@
-const useImagesOfEntities = () => {
-  const imagesOfEntities = [];
+import handleLoadingImg from "../main.js";
+
+const listenToBtn = () => {
+  //   const imagesOfEntities = [];
 
   const addEntityButton = document.getElementById("add-entity-button");
   const imageInput = document.getElementById("entity-image-input");
-  const animationWindow = document.getElementById("animation-window");
+  //   const animationWindow = document.getElementById("animation-window");
 
   addEntityButton.addEventListener("click", () => {
     imageInput.click();
@@ -16,14 +18,15 @@ const useImagesOfEntities = () => {
 
       reader.onload = (e) => {
         const image = new Image();
-        image.width = 98;
-        image.height = 98;
+        // image.width = sizeOfEntity;
+        // image.height = sizeOfEntity;
         image.src = e.target.result;
         image.onload = () => {
-          console.log("Choosen image:", image.src);
-          imagesOfEntities.push(image);
-          console.log(imagesOfEntities);
-          animationWindow.appendChild(image);
+          //   console.log("Choosen image:", image.src);
+          //   imagesOfEntities.push(image);
+          //   console.log(imagesOfEntities);
+          //   animationWindow.appendChild(image);
+          handleLoadingImg(image);
         };
       };
 
@@ -39,6 +42,6 @@ const useImagesOfEntities = () => {
     imageInput.value = null;
   });
 
-  return { imagesOfEntities };
+  //   return { imagesOfEntities };
 };
-export default useImagesOfEntities;
+export default listenToBtn;
