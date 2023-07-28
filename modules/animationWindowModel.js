@@ -6,6 +6,7 @@ class AnimationWindow {
     this.entities = [];
     this.focusedEntityId = undefined;
   }
+
   findFreeLocation(sizeOfEntity) {
     let c = 0;
     let foundLocation = undefined;
@@ -27,14 +28,14 @@ class AnimationWindow {
                 ent.location.y <= top + sizeOfEntity) ||
               (left <= ent.location.x &&
                 ent.location.x <= left + sizeOfEntity &&
-                top <= ent.location.y + ent.image.width &&
-                ent.location.y + ent.image.width <= top + sizeOfEntity) ||
-              (left <= ent.location.x + ent.image.width &&
-                ent.location.x + ent.image.width <= left + sizeOfEntity &&
-                top <= ent.location.y + ent.image.width &&
-                ent.location.y + ent.image.width <= top + sizeOfEntity) ||
-              (left <= ent.location.x + ent.image.width &&
-                ent.location.x + ent.image.width <= left + sizeOfEntity &&
+                top <= ent.location.y + ent.image.style.width &&
+                ent.location.y + ent.image.style.width <= top + sizeOfEntity) ||
+              (left <= ent.location.x + ent.image.style.width &&
+                ent.location.x + ent.image.style.width <= left + sizeOfEntity &&
+                top <= ent.location.y + ent.image.style.width &&
+                ent.location.y + ent.image.style.width <= top + sizeOfEntity) ||
+              (left <= ent.location.x + ent.image.style.width &&
+                ent.location.x + ent.image.style.width <= left + sizeOfEntity &&
                 top <= ent.location.y &&
                 ent.location.y <= top + sizeOfEntity)
             )
@@ -48,26 +49,38 @@ class AnimationWindow {
           y: top,
         };
       }
-      c = c + 1;
+      c++;
     }
     return foundLocation;
   }
+
   addEntity(entity) {
-    const freeLocation = this.findFreeLocation(entity.image.width);
+    const freeLocation = this.findFreeLocation(
+      parseInt(entity.image.style.width)
+    );
     if (freeLocation) {
       entity.initiateLocation(freeLocation);
       entity.changeId(this.entities.length);
-      this.focusedEntityId = this.entities.length;
       this.entities.push(entity);
+      this.setFocusedEntity(entity.id);
       this.animationWindowEl.append(entity.image);
       return true;
     } else {
       return false;
     }
   }
+
   setFocusedEntity(entityId) {
     this.focusedEntityId = entityId;
+    this.entities.forEach((ent) => {
+      if (ent.id === entityId) {
+        ent.image.classList.add("entity-focused");
+      } else {
+        ent.image.classList.remove("entity-focused");
+      }
+    });
   }
+
   getFocusedEntity() {
     if (typeof this.focusedEntityId === "number")
       return this.entities[this.focusedEntityId];
