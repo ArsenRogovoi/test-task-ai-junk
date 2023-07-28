@@ -14,16 +14,16 @@ const handleKeyboardEvents = () => {
     if (focusedEntity) {
       switch (event.key) {
         case "ArrowUp":
-          focusedEntity.moveUp();
+          focusedEntity.moveUp(animationWindowObj.entities);
           break;
         case "ArrowDown":
-          focusedEntity.moveDown();
+          focusedEntity.moveDown(animationWindowObj.entities);
           break;
         case "ArrowLeft":
-          focusedEntity.moveLeft();
+          focusedEntity.moveLeft(animationWindowObj.entities);
           break;
         case "ArrowRight":
-          focusedEntity.moveRight();
+          focusedEntity.moveRight(animationWindowObj.entities);
           break;
         default:
           break;
