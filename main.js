@@ -8,14 +8,50 @@ const ENTITY_STEP = 20;
 const animationWindowEl = document.getElementById("animation-window");
 const animationWindowObj = new AnimationWindow(animationWindowEl);
 
-listenToBtn();
+const handleKeyboardEvents = () => {
+  document.addEventListener("keydown", (event) => {
+    const focusedEntity = animationWindowObj.getFocusedEntity();
+    if (focusedEntity) {
+      switch (event.key) {
+        case "ArrowUp":
+          focusedEntity.moveUp();
+          break;
+        case "ArrowDown":
+          focusedEntity.moveDown();
+          break;
+        case "ArrowLeft":
+          focusedEntity.moveLeft();
+          break;
+        case "ArrowRight":
+          focusedEntity.moveRight();
+          break;
+        default:
+          break;
+      }
+    }
+  });
+};
 
 const handleLoadingImg = (image) => {
-  const entity = new Entity(image, ENTITY_FIXED_SIZE, ENTITY_STEP);
+  const entity = new Entity(
+    image,
+    ENTITY_FIXED_SIZE,
+    ENTITY_STEP,
+    animationWindowEl
+  );
   const added = animationWindowObj.addEntity(entity);
   if (!added) {
     alert("there is not space in animation window!");
+  } else {
+    image.addEventListener("click", () => {
+      animationWindowObj.setFocusedEntity(+image.id);
+    });
   }
 };
+
+document.addEventListener("DOMContentLoaded", () => {
+  listenToBtn();
+  handleKeyboardEvents();
+});
 
 export default handleLoadingImg;

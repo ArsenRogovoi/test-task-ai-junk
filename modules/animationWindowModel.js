@@ -1,9 +1,10 @@
-import getRandomInt from "./utils.js";
+import { getRandomInt } from "./utils.js";
 
 class AnimationWindow {
   constructor(animationWindowEl) {
     this.animationWindowEl = animationWindowEl;
     this.entities = [];
+    this.focusedEntityId = undefined;
   }
   findFreeLocation(sizeOfEntity) {
     let c = 0;
@@ -54,14 +55,23 @@ class AnimationWindow {
   addEntity(entity) {
     const freeLocation = this.findFreeLocation(entity.image.width);
     if (freeLocation) {
-      entity.changeLocation(freeLocation);
+      entity.initiateLocation(freeLocation);
       entity.changeId(this.entities.length);
+      this.focusedEntityId = this.entities.length;
       this.entities.push(entity);
       this.animationWindowEl.append(entity.image);
       return true;
     } else {
       return false;
     }
+  }
+  setFocusedEntity(entityId) {
+    this.focusedEntityId = entityId;
+  }
+  getFocusedEntity() {
+    if (typeof this.focusedEntityId === "number")
+      return this.entities[this.focusedEntityId];
+    return null;
   }
 }
 export default AnimationWindow;

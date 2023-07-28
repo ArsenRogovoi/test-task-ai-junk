@@ -1,11 +1,8 @@
 import handleLoadingImg from "../main.js";
 
 const listenToBtn = () => {
-  //   const imagesOfEntities = [];
-
   const addEntityButton = document.getElementById("add-entity-button");
   const imageInput = document.getElementById("entity-image-input");
-  //   const animationWindow = document.getElementById("animation-window");
 
   addEntityButton.addEventListener("click", () => {
     imageInput.click();
@@ -18,14 +15,8 @@ const listenToBtn = () => {
 
       reader.onload = (e) => {
         const image = new Image();
-        // image.width = sizeOfEntity;
-        // image.height = sizeOfEntity;
         image.src = e.target.result;
         image.onload = () => {
-          //   console.log("Choosen image:", image.src);
-          //   imagesOfEntities.push(image);
-          //   console.log(imagesOfEntities);
-          //   animationWindow.appendChild(image);
           handleLoadingImg(image);
         };
       };
@@ -34,14 +25,11 @@ const listenToBtn = () => {
         alert("Error in reading file: ", reader.error);
       };
 
-      //   reading choosen file as URL, for getting his source
       reader.readAsDataURL(file);
     } else {
       alert("Choosen file is not an image!");
     }
     imageInput.value = null;
   });
-
-  //   return { imagesOfEntities };
 };
 export default listenToBtn;
