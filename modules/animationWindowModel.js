@@ -10,6 +10,9 @@ class AnimationWindow {
   findFreeLocation(sizeOfEntity) {
     let c = 0;
     let foundLocation = undefined;
+    // this while check random locations (left ; top) if these location
+    // make intersection with other entities until he find one which not
+    // or until 3000 iterations for preventing infinity loop
     while (!foundLocation && c <= 3000) {
       const left = getRandomInt(
         0,

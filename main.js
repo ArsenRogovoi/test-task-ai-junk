@@ -32,6 +32,9 @@ const handleKeyboardEvents = () => {
   });
 };
 
+//handleLoadingImg gets loaded image element and create entity
+//instance. Adds this instance to animation window instance and
+//set focus on it.
 const handleLoadingImg = (image) => {
   const entity = new Entity(
     image,
@@ -49,6 +52,8 @@ const handleLoadingImg = (image) => {
   }
 };
 
+//In moment that DOM has loaded we runs listenToBtn module
+//and add 'keydown' event on document object.
 document.addEventListener("DOMContentLoaded", () => {
   listenToBtn();
   handleKeyboardEvents();
