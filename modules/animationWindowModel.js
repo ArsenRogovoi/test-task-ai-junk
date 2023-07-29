@@ -28,14 +28,18 @@ class AnimationWindow {
                 ent.location.y <= top + sizeOfEntity) ||
               (left <= ent.location.x &&
                 ent.location.x <= left + sizeOfEntity &&
-                top <= ent.location.y + ent.image.style.width &&
-                ent.location.y + ent.image.style.width <= top + sizeOfEntity) ||
-              (left <= ent.location.x + ent.image.style.width &&
-                ent.location.x + ent.image.style.width <= left + sizeOfEntity &&
-                top <= ent.location.y + ent.image.style.width &&
-                ent.location.y + ent.image.style.width <= top + sizeOfEntity) ||
-              (left <= ent.location.x + ent.image.style.width &&
-                ent.location.x + ent.image.style.width <= left + sizeOfEntity &&
+                top <= ent.location.y + parseInt(ent.image.style.width) &&
+                ent.location.y + parseInt(ent.image.style.width) <=
+                  top + sizeOfEntity) ||
+              (left <= ent.location.x + parseInt(ent.image.style.width) &&
+                ent.location.x + parseInt(ent.image.style.width) <=
+                  left + sizeOfEntity &&
+                top <= ent.location.y + parseInt(ent.image.style.width) &&
+                ent.location.y + parseInt(ent.image.style.width) <=
+                  top + sizeOfEntity) ||
+              (left <= ent.location.x + parseInt(ent.image.style.width) &&
+                ent.location.x + parseInt(ent.image.style.width) <=
+                  left + sizeOfEntity &&
                 top <= ent.location.y &&
                 ent.location.y <= top + sizeOfEntity)
             )
